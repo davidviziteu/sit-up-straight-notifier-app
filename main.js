@@ -17,11 +17,6 @@ let everything = {}; // "main app" object. holds window, tray. ran out of naming
 
 //should make the app auto launch at start-up. the only way for the user to stop this is from task manager (i think)
 //probably doesn't work. hope it doesn't cause any crashes 
-var autoLaunchAtOsStartUp = new autoLaunch({
-  name: 'sit-up-straight-notifier-app',
-});
-autoLaunchAtOsStartUp.enable();
-
 
 app.on('activate', function () {
   //for macOS. no clue if it works properly
@@ -29,22 +24,41 @@ app.on('activate', function () {
   if (BrowserWindow.getAllWindows().length === 0) createWindow()
 })
 
+
+
+var autoLaunchAtOsStartUp = new autoLaunch({
+  name: 'sit up straight notifier app',
+  //path: app.getPath("exe"),
+  isHidden: true
+});
+autoLaunchAtOsStartUp.enable();
+// " We add a registry entry under \HKEY_CURRENT_USER\Software\Microsoft\Windows\Curr~entVersion\Run. "
+
+
 app.on('ready', () => {
+
+  let startMinimized = (process.argv || []).indexOf('--hidden') !== -1; //internet copy paste, variable used below
+
   everything.window = new BrowserWindow({
     width: 410,
     height: 510,
     webPreferences: {
       nodeIntegration: true,
     },
-    icon: path.join(__dirname, 'eye.ico')
+    icon: path.join(__dirname, 'eye.ico'),
+    show: startMinimized ? false : true
   })
-  everything.window.loadFile('index.html')
+
+  everything.window.loadFile('index.html');
+
   everything.window.on('close', function (event) {
-    //app.exit(); return; // testing something. should remove this line later. i am writing this comment in case i forget about it
     //for skype-like behaviour. keeps app running in the background eve if it's window is closed
     event.preventDefault();
     everything.window.hide();
   });
+
+
+
 
   let notifSettings = getLastSelectedInterval();
 
@@ -70,6 +84,8 @@ function getLastSelectedInterval() {
     everything.window.webContents.executeJavaScript(`markIt(0, false);`); //call to update the front end highlited button
     return '0';
   }
+
+
 }
 
 function generateContextMenu(tickedBox) {
