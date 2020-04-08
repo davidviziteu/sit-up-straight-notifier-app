@@ -11,6 +11,7 @@
 const { app, BrowserWindow, Menu, Tray } = require('electron');
 const settings = require('electron-settings');
 const autoLaunch = require('auto-launch');
+const path = require('path');
 let everything = {}; // "main app" object. holds window, tray. ran out of naming ideas
 
 
@@ -34,10 +35,12 @@ app.on('ready', () => {
     height: 510,
     webPreferences: {
       nodeIntegration: true,
-    }
+    },
+    icon: path.join(__dirname, 'eye.ico')
   })
   everything.window.loadFile('index.html')
   everything.window.on('close', function (event) {
+    //app.exit(); return; // testing something. should remove this line later. i am writing this comment in case i forget about it
     //for skype-like behaviour. keeps app running in the background eve if it's window is closed
     event.preventDefault();
     everything.window.hide();
@@ -46,7 +49,7 @@ app.on('ready', () => {
   let notifSettings = getLastSelectedInterval();
 
   let contextMenu = generateContextMenu(notifSettings)
-  everything.tray = new Tray('./eye.png');
+  everything.tray = new Tray(path.join(__dirname, 'eye.ico')); //no idea why i shoud use path.join(..) but it seems to fix a bug when running electron-packager
   everything.tray.on('double-click', () => everything.window.show());
   everything.tray.setToolTip(`wanna stop that "sit up straight" notification you've been seeing? \n right click -> off   or   right click -> close`);
   everything.tray.setContextMenu(contextMenu);
@@ -104,7 +107,7 @@ function generateContextMenu(tickedBox) {
     },
     {
       label: 'exit', type: 'normal', click: () => {
-        app.exit()
+        app.exit();
       }
     },
   ])

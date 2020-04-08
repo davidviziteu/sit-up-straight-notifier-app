@@ -4,7 +4,8 @@
   "description": "Minimalist app that notifies you to sit up straight, probably reducing your backache at the end of a long, full of online conferences day of self-isolation.",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-packager ./ --platform=win32 --arch=x64 --icon=./eye.ico --overwrite"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,21 @@
     "notifications",
     "pandemic"
   ],
+  "build": {
+    "appId": "sit-up-straight-notifier-app",
+    "productName": "sit up straight notifier app",
+    "appname": "sit up straight notifier app",
+    "files": [
+      "index.html",
+      "main.js",
+      "renderer.js",
+      "style.css",
+      "icons/"
+    ]
+  },
+  "appId": "sit-up-straight-notifier-app",
+  "productName": "sit up straight notifier app",
+  "appname": "sit up straight notifier app",
   "author": "David-Andrei Viziteu",
   "license": "ISC",
   "bugs": {
