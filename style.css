@@ -1,0 +1,46 @@
+/*
+	Copy & paste by:
+		David-Andrei Viziteu		(viziteu.david@gmail.com)
+  UAIC, Faculty of Computer Science, APRIL 2020
+  
+  source: https://www.w3schools.com/css/css3_buttons.asp
+  
+  I don't really like front end that much. But I can manage to do something that has a decent design quickly and efortlessly.
+*/
+html{
+    font-family: Helvetica; 
+    display: inline-block; 
+    margin: 0px auto; 
+    text-align: center;
+    background-color: rgb(219, 213, 205);
+}
+.button {
+  border: none;
+  color: transparent;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button1 {
+  background-color: transparent;
+  color: black;
+  border: 1px solid #555555;
+}
+
+.button1:hover {
+  background-color: #555555;
+  color: white;
+}
+
+#active {
+    background-color: #555555;
+    color: white;
+}
+.description{
+    font-size: 11px;
+}
