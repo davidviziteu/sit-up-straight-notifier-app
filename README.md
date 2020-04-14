@@ -6,4 +6,4 @@ How to install: download the archive "app.zip" (click on it -> click on "view ra
 The app shoud automatically launch (in tray) as soon as the user logs in after every restart.
 
 How to uninstall: delete the 'destination' folder mentioned at 'how to install'. 
-There will still be a registry key left, but it's not a big deal. If you want to delete it, it's at \HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run  (named 'sit up straight notifier app').
+There will still be a registry key left, but it's not a big deal. If you want to delete it, it's at \HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run  (named 'dont break your back').
