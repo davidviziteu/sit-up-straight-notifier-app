@@ -1,5 +1,5 @@
 {
-  "name": "sit-up-straight-notifier-app",
+  "name": "dont-break-your-back",
   "version": "1.0.0",
   "description": "Minimalist app that notifies you to sit up straight, probably reducing your backache at the end of a long, full of online conferences day of self-isolation.",
   "main": "main.js",
@@ -21,23 +21,37 @@
     "notifications",
     "pandemic"
   ],
+  "appId": "sit.up.straight.notifier.app",
+  "productName": "dont break your back",
+  "appname": "dont break your back",
   "build": {
-    "appId": "sit-up-straight-notifier-app",
-    "productName": "sit up straight notifier app",
-    "appname": "sit up straight notifier app",
+    "appId": "sit.up.straight.notifier.app",
+    "productName": "dont break your back",
+    "appname": "dont break your back",
     "files": [
       "index.html",
       "main.js",
       "renderer.js",
       "style.css",
-      "icons/"
-    ]
+      "eye.ico"
+    ],
+    "win32": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "eye.ico"
+    },
+    "nsis": {
+      "installerIcon": "eye.ico",
+      "uninstallerIcon": "eye.ico",
+      "license": "LICENSE",
+      "runAfterFinish": "true",
+      "oneClick": "true",
+      "include": "registry_handler",
+      "deleteAppDataOnUninstall": "true"
+    }
   },
-  "appId": "sit-up-straight-notifier-app",
-  "productName": "sit up straight notifier app",
-  "appname": "sit up straight notifier app",
   "author": "David-Andrei Viziteu",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/davidviziteu/sit-up-straight-notifier-app/issues"
   },

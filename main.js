@@ -4,7 +4,7 @@
   UAIC, Faculty of Computer Science, APRIL 2020
   
   yes, i use ; in js.
-  this app was made by modifying the example app provided here: https://www.electronjs.org/docs/tutorial/first-app#trying-this-example
+  this app was made after looking at the example app provided here: https://www.electronjs.org/docs/tutorial/first-app#trying-this-example
   and using some nodejs modules
 */
 
@@ -14,31 +14,18 @@ const autoLaunch = require('auto-launch');
 const path = require('path');
 let everything = {}; // "main app" object. holds window, tray. ran out of naming ideas
 
-
-//should make the app auto launch at start-up. the only way for the user to stop this is from task manager (i think)
-//probably doesn't work. hope it doesn't cause any crashes 
-
-app.on('activate', function () {
-  //for macOS. no clue if it works properly
-  //this was there when i edited the example code, so I won't touch it. Maybe it does it job. Maybe not. I'll test later.
-  if (BrowserWindow.getAllWindows().length === 0) createWindow()
-})
-
-
-
+//----------------------i should handle registry entries in the installer, ignore this piece of code ----------------------------
 var autoLaunchAtOsStartUp = new autoLaunch({
-  name: 'sit up straight notifier app',
-  //path: app.getPath("exe"),
+  name: 'dont break your back',
+  path: app.getPath("exe"),
   isHidden: true
 });
 autoLaunchAtOsStartUp.enable();
-// " We add a registry entry under \HKEY_CURRENT_USER\Software\Microsoft\Windows\Curr~entVersion\Run. "
-
+// " We add a registry entry under \HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run. "
+//----------------------i should handle registry entries in the installer, ignore this piece of code ----------------------------
 
 app.on('ready', () => {
-
-  let startMinimized = (process.argv || []).indexOf('--hidden') !== -1; //internet copy paste, variable used below
-
+  let startMinimized = (process.argv || []).indexOf('--hidden') !== -1; //check if registry entry has '--hidden'
   everything.window = new BrowserWindow({
     width: 410,
     height: 510,
@@ -57,13 +44,10 @@ app.on('ready', () => {
     everything.window.hide();
   });
 
-
-
-
   let notifSettings = getLastSelectedInterval();
 
   let contextMenu = generateContextMenu(notifSettings)
-  everything.tray = new Tray(path.join(__dirname, 'eye.ico')); //no idea why i shoud use path.join(..) but it seems to fix a bug when running electron-packager
+  everything.tray = new Tray(path.join(__dirname, 'eye.ico')); //used path.join for electron-packager
   everything.tray.on('double-click', () => everything.window.show());
   everything.tray.setToolTip(`wanna stop that "sit up straight" notification you've been seeing? \n right click -> off   or   right click -> close`);
   everything.tray.setContextMenu(contextMenu);
