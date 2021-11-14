@@ -3,7 +3,6 @@
 		David-Andrei Viziteu		(viziteu.david@gmail.com)
   UAIC, Faculty of Computer Science, APRIL 2020
   
-  yes, i use ; in js.
   this app was made after looking at the example app provided here: https://www.electronjs.org/docs/tutorial/first-app#trying-this-example
   and using some nodejs modules
 */
