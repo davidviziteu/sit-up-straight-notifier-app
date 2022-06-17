@@ -57,7 +57,7 @@
   },
   "homepage": "https://github.com/davidviziteu/sit-up-straight-notifier-app#readme",
   "devDependencies": {
-    "electron": "^11.5.0"
+    "electron": "^15.5.5"
   },
   "dependencies": {
     "auto-launch": "^5.0.5",
